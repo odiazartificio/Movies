@@ -105,9 +105,9 @@ jobs:
          # docker build -t cursodevsecops/laboratorio-final:latest .
          # docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
 
- #     - name: Push Docker image
- #       run: |
- #         docker push cursodevsecops/laboratorio-final:latest
+      - name: Push Docker image
+        run: |
+          docker push cursodevsecops/laboratorio-final:latest
 
 #-------------------Docker Scan ------------------------------------------
   DockerScan:
@@ -143,7 +143,7 @@ jobs:
 
     - name: Despliegue Aplicacion
       run: |
-       docker run -d -p 5005:5005 --name LaboratorioMovies2-deploy cursodevsecops/laboratorio-final:latest
+       docker run -d -P --name LaboratorioMovies2-deploy cursodevsecops/laboratorio-final:latest
 
     - name: Sleep
       run: |

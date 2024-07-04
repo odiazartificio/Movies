@@ -103,10 +103,6 @@ jobs:
         run: |
           docker build -t cursodevsecops/laboratorio-final:latest .
           docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
-      
-      - name: Push Docker image
-        run: |
-          docker push cursodevsecops/laboratorio-final:latest
 
 #---------------Docker Scan -------------
   DockerScan:
@@ -133,3 +129,7 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM,LOW'
+
+      - name: Push Docker image
+        run: |
+          docker push cursodevsecops/laboratorio-final:latest

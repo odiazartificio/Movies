@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feat-devsecops
+      runs-on: self-hosted
 
 jobs:        
   SAST:
@@ -88,7 +89,7 @@ jobs:
 
   DockerBuild:
     needs: SCA
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -107,3 +108,29 @@ jobs:
       - name: Push Docker image
         run: |
           docker push cursodevsecops/laboratorio-final:latest
+
+#---------------Docker Scan -------------
+  DockerScan:
+    needs: DockerBuild
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3.0.0
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Pull de la Imagen docker
+        run: |
+          docker pull cursodevsecops/laboratorio-final:latest
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'cursodevsecops/laboratorio-final:latest'
+          format: 'table'
+          exit-code: 1
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH,MEDIUM,LOW'

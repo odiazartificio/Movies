@@ -101,8 +101,8 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t odiazartificio/movies:latest .
-          docker tag odiazartificio/movies:latest odiazartificio/movies:feat-clase2
+          docker build -t cursodevsecops/laboratorio-final:latest .
+          docker tag odiazartificio/movies:latest odiazartificio/movies:feat-devsecops
       
       - name: Push Docker image
         run: |

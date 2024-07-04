@@ -141,9 +141,9 @@ jobs:
     runs-on: self-hosted
     steps:
 
- #  - name: Despliegue Aplicacion
- #    run: |
- #      docker run -d -p 80:80 --name LaboratorioMovies-deploy cursodevsecops/laboratorio-final:latest
+    - name: Despliegue Aplicacion
+      run: |
+       docker run -d -p 5005:5005 --name LaboratorioMovies2-deploy cursodevsecops/laboratorio-final:latest
 
  #  - name: Sleep
  #    run: |

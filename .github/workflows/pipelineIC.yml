@@ -107,4 +107,3 @@ jobs:
       - name: Push Docker image
         run: |
           docker push cursodevsecops/laboratorio-final:latest
-          docker push cursodevsecops/laboratorio-final:feat-devsecops

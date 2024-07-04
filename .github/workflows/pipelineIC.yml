@@ -104,7 +104,7 @@ jobs:
           docker build -t cursodevsecops/laboratorio-final:latest .
           docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
 
-#---------------Docker Scan -------------
+#-------------------Docker Scan ------------------------------------------
   DockerScan:
     needs: DockerBuild
     runs-on: ubuntu-latest
@@ -133,3 +133,5 @@ jobs:
       - name: Push Docker image
         run: |
           docker push cursodevsecops/laboratorio-final:latest
+
+#-------------------DAST ------------------------------------------------

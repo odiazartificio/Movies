@@ -83,11 +83,6 @@ jobs:
         name: Depcheck report
         path: ${{github.workspace}}/reports
 
-    - name: Upload JAR
-      uses: actions/upload-artifact@master
-      with:
-        name: JAR
-        path: ${{github.workspace}}/build/libs/*.jar
 
 #-------------------Docker Build Image----------------------------------
 
@@ -104,3 +99,12 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
+      - name: Build Docker image
+        run: |
+          docker build -t odiazartificio/movies:latest .
+          docker tag odiazartificio/movies:latest odiazartificio/movies:feat-clase2
+      
+      - name: Push Docker image
+        run: |
+          docker push odiazartificio/movies:latest
+          docker push odiazartificio/movies:feat-clase2

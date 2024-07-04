@@ -105,9 +105,9 @@ jobs:
          # docker build -t cursodevsecops/laboratorio-final:latest .
          # docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
 
-      - name: Push Docker image
-        run: |
-          docker push cursodevsecops/laboratorio-final:latest
+ #     - name: Push Docker image
+ #       run: |
+ #         docker push cursodevsecops/laboratorio-final:latest
 
 #-------------------Docker Scan ------------------------------------------
   DockerScan:
@@ -141,15 +141,16 @@ jobs:
     runs-on: self-hosted
     steps:
 
-    - name: Despliegue Aplicacion
-      run: |
-        docker run -d -p 8085:8085 --name LaboratorioMovies-deploy cursodevsecops/laboratorio-final:latest
+ #  - name: Despliegue Aplicacion
+ #    run: |
+ #      docker run -d -p 8085:8085 --name LaboratorioMovies-deploy cursodevsecops/laboratorio-final:latest
 
-    - name: Sleep
-      run: |
-        sleep 3
-  #  - name: OWASP ZAP Scan
-  #    uses: zaproxy/action-baseline@v0.11.0
-  #    with:
-  #      target: 'http://localhost:80'
+ #  - name: Sleep
+ #    run: |
+ #      sleep 3
+ 
+    - name: OWASP ZAP Scan
+      uses: zaproxy/action-baseline@v0.11.0
+      with:
+        target: 'http://localhost:80'
   

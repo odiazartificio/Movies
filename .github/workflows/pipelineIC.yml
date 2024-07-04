@@ -143,7 +143,7 @@ jobs:
 
     - name: Despliegue Aplicacion
       run: |
-       docker run -d -P --name LaboratorioMovies2-deploy cursodevsecops/laboratorio-final:latest
+       docker run -d -p 8081:80 cursodevsecops/laboratorio-final:latest
 
     - name: Sleep
       run: |
@@ -157,6 +157,6 @@ jobs:
     - name: OWASP ZAP Scan
       run: |
         docker pull owasp/zap2docker-stable
-        docker run --rm -v ${PWD}:/zap/wrk/:rw -t owasp/zap2docker-stable & zap-baseline.py -t http://localhost:5005 -r DAST.html
-        
+        docker run --rm -v ${PWD}:/zap/wrk/:rw -t owasp/zap2docker-stable & zap-baseline.py -t http://localhost:8081 -r DAST.html
+
   

@@ -101,8 +101,9 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t cursodevsecops/laboratorio-final:latest .
-          docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
+          docker build --build-arg TMDB_V3_API_KEY=6bec91b1d714fb0a10dd680b250bfab3 --tag cursodevsecops/laboratorio-final:latest .
+         # docker build -t cursodevsecops/laboratorio-final:latest .
+         # docker tag cursodevsecops/laboratorio-final:latest odiazartificio/movies:feat-devsecops
 
       - name: Push Docker image
         run: |
@@ -138,7 +139,8 @@ jobs:
 
     - name: Despliegue Aplicacion
       run: |
-        docker run -p 8085:8085 --name LaboratorioMovies-deploy cursodevsecops/laboratorio-final:latest
+        docker run -d -p 8085:8085 --name LaboratorioMovies-deploy cursodevsecops/laboratorio-final:latest
+
     - name: Sleep
       run: |
         sleep 3
